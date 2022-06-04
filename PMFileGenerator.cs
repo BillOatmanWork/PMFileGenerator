@@ -67,7 +67,7 @@ namespace PMFileGenerator
 
                 if (found)
                 {
-                    string edlLine = (st.StartTime.TotalMilliseconds / 1000).ToString() + "\t" + (st.EndTime.TotalMilliseconds / 1000).ToString() + "\t" + "1";
+                    string edlLine = ((double)st.StartTime.TotalMilliseconds / (double)1000).ToString("#.##") + "\t" + ((double)st.EndTime.TotalMilliseconds / (double)1000).ToString("#.##") + "\t" + "1";
                     edlSb.AppendLine(edlLine);
 
                     Subtitle newSt = new Subtitle(outIndex++);
