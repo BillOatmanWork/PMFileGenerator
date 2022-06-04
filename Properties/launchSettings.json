@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "PMFileGenerator": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\Stuff\\PMFileGenerator\\Silicon Valley S01E08.srt\"  C:\\Stuff\\PMFileGenerator\\MuteList.txt"
+    }
+  }
+}
