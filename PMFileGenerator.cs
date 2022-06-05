@@ -33,6 +33,12 @@ namespace PMFileGenerator
             Console.WriteLine($"Muted SRT File: {outSrtFile}");
             Console.WriteLine("");
 
+            if(!File.Exists(srtFile))
+            {
+                Console.WriteLine($"SRT File {srtFile} does not exist.");
+                return;
+            }
+
             List<string> swearWords = new List<string>(File.ReadAllLines(pottyFile));
 
             StringBuilder edlSb = new StringBuilder();
