@@ -1,5 +1,5 @@
 # PMFileGenerator
-Emby plugin ""Potty Mouth"" EDL and adjusted SRT file generator.
+Emby plugin "Potty Mouth" EDL and adjusted SRT file generator.
 
 PMFileGenerator <Full path to srt file> <Full path to muted words file>
 EDL and muted SRT files created in the same directory as the SRT file.
