@@ -8,4 +8,8 @@
     <Version>0.0.3.0</Version>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="BuildWinTest.bat" />
+  </ItemGroup>
+
 </Project>

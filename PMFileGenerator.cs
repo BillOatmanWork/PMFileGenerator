@@ -106,6 +106,12 @@ namespace PMFileGenerator
             }
         }
 
+        /// <summary>
+        /// Find whole word matches.  Required so that a muted word of "ass" doesn't get flagged in the word "assemble".
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="word"></param>
+        /// <returns></returns>
         public int IndexOfWholeWord(string str, string word)
         {
             for (int j = 0; j < str.Length &&
@@ -120,7 +126,7 @@ namespace PMFileGenerator
         private void DisplayHelp()
         {
             Console.WriteLine("PMFileGenerator <Full path to srt file> <Full path to muted words file>");
-            Console.WriteLine("");
+            Console.WriteLine("EDL and muted SRT files created in the same directory as the SRT file.");
             Console.WriteLine("");
 
             Console.WriteLine("Hit enter to continue");

@@ -4,6 +4,7 @@ using System.Text;
 namespace SRT
 {
     /// <summary>
+    /// Taken from https://github.com/iivmok/srtlib.net.  Copyright (c) 2014 Iivari Mokelainen
     /// SubRip Text file (.srt)
     /// </summary>
     public class SRTFile
