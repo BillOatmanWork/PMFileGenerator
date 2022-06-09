@@ -62,7 +62,7 @@ namespace PMFileGenerator
                             for (int i = 0; i < swear.Length; i++)
                                 sb.Append("*");
 
-                            theLine = line.Replace(swear, sb.ToString(), StringComparison.OrdinalIgnoreCase);
+                            theLine = theLine.Replace(swear, sb.ToString(), StringComparison.OrdinalIgnoreCase);
 
                             found = true;
                         }
