@@ -33,7 +33,7 @@ The index changed because this new srt fle only contains the lines that were mut
 
 So if you use the new srt, the audio will be muted but you can at least see what they were saying minus the words you do not want to see.
 
-The source is written for NET6, so even though the released binary is for Windows, binaries can be built from the source for other operating systems.
+The source is written for NET6, so even though the released binary is for Windows and a few other operating systems, binaries can be built from the source for other operating systems.
 
 My muted words file is included in the repository.
 
