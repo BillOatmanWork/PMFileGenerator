@@ -24,9 +24,12 @@ namespace PMFileGenerator
 
             string srtFile = args[0];
             string pottyFile = args[1];
-            string outEdlFile = Path.ChangeExtension(srtFile, ".edl");
             string outSrtFile = Path.ChangeExtension(srtFile, ".muted.srt");
 
+            // Emby SRT file can have a language identifier like  ,eng, but need to get rid of that for EDL file
+            string test1 = Path.GetFileNameWithoutExtension(srtFile);
+            string outEdlFile = Path.ChangeExtension(test1, ".edl");
+           
             Console.WriteLine($"SRT File: {srtFile}");
             Console.WriteLine($"Potty Words File: {pottyFile}");
             Console.WriteLine($"EDL File: {outEdlFile}");
