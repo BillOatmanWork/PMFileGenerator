@@ -7,6 +7,7 @@ PMFileGenerator <Full path to srt file> <Full path to muted words file>
 EDL and muted SRT files created in the same directory as the SRT file.
 
 The new SRT file, .muted, contains only the lines where the audio will be muted, with the muted word replaced with asterisks.
+
 The new SRT file, .mutedFull, contains all of the lines in the original SRT fle, but the lines with the muted word replaced with asterisks.
 
 So for example if this is in the original srt:
