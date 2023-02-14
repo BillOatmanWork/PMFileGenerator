@@ -2,7 +2,7 @@
   "profiles": {
     "PMFileGenerator": {
       "commandName": "Project",
-      "commandLineArgs": "\"C:\\Stuff\\PMFileGenerator\\Test\\Silicon.Valley.S01E08.HDTV.x264-KILLERS.srt\"  C:\\Stuff\\PMFileGenerator\\Test\\MuteList.txt"
+      "commandLineArgs": "\"E:\\junk\\Bad Moms (2016).srt\"  E:\\PersonalRepos\\PMFileGenerator\\MuteList.txt"
     }
   }
 }

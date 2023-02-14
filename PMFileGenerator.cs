@@ -25,6 +25,7 @@ namespace PMFileGenerator
             string srtFile = args[0];
             string pottyFile = args[1];
             string outSrtFile = Path.ChangeExtension(srtFile, ".muted.srt");
+            string outFullSrtFile = Path.ChangeExtension(srtFile, ".mutedFull.srt");
 
             // Emby SRT file can have a language identifier like  ,eng, but need to get rid of that for EDL file
             string test1 = Path.GetFileNameWithoutExtension(srtFile);
@@ -34,6 +35,7 @@ namespace PMFileGenerator
             Console.WriteLine($"Potty Words File: {pottyFile}");
             Console.WriteLine($"EDL File: {outEdlFile}");
             Console.WriteLine($"Muted SRT File: {outSrtFile}");
+            Console.WriteLine($"Muted Full SRT File: {outFullSrtFile}");
             Console.WriteLine("");
 
             if(!File.Exists(srtFile))
@@ -47,6 +49,7 @@ namespace PMFileGenerator
             StringBuilder edlSb = new StringBuilder();
             SRTFile srtIn = new SRTFile(srtFile);
             List<Subtitle> subsOut = new List<Subtitle>();
+            List<Subtitle> subsFullOut = new List<Subtitle>();
             int outIndex = 1;
             bool found = false;
             List<string> newLines = new List<string>();
@@ -87,8 +90,11 @@ namespace PMFileGenerator
                         newSt.Lines.Add(s);
 
                     subsOut.Add(newSt);
+                    subsFullOut.Add(newSt);
                     found = false;                 
                 }
+                else
+                    subsFullOut.Add(st);
 
                 newLines.Clear();
             }
@@ -104,6 +110,16 @@ namespace PMFileGenerator
 
                 for (int i = 0; i < subsOut.Count; i++)
                     sbOut.Append(subsOut[i].ToString());
+
+                tw.WriteLine(sbOut.ToString());
+            }
+
+            using (TextWriter tw = new StreamWriter(outFullSrtFile, false))
+            {
+                StringBuilder sbOut = new StringBuilder();
+
+                for (int i = 0; i < subsFullOut.Count; i++)
+                    sbOut.Append(subsFullOut[i].ToString());
 
                 tw.WriteLine(sbOut.ToString());
             }
