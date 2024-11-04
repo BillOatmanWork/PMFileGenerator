@@ -1,23 +1,18 @@
-﻿using SRT;
+
 using System.Globalization;
 using System.Text;
+using SRT;
 
 namespace PMFileGenerator
 {
-    internal class PMFileGenerator
+    internal sealed class PMFileGenerator
     {
         static void Main(string[] args)
-        {
-            PMFileGenerator p = new PMFileGenerator();
-            p.RealMain(args);
-        }
-
-        private void RealMain(string[] args)
         {
             Console.WriteLine("PMFileGenerator version " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version);
             Console.WriteLine("");
 
-            if(args.Length != 2)
+            if (args.Length != 2)
             {
                 DisplayHelp();
                 return;
@@ -30,9 +25,10 @@ namespace PMFileGenerator
 
             // Emby SRT file can have a language identifier like  ,en, but need to get rid of that for EDL file
             string fName = Path.GetFileNameWithoutExtension(srtFile);
-            string path = Path.GetDirectoryName(srtFile);
-            string outEdlFile = Path.Combine(path,  Path.ChangeExtension(fName, ".edl"));
-           
+            string? directoryName = Path.GetDirectoryName(srtFile);
+            string path = directoryName ?? string.Empty;
+            string outEdlFile = Path.Combine(path, Path.ChangeExtension(fName, ".edl"));
+
             Console.WriteLine($"SRT File: {srtFile}");
             Console.WriteLine($"Potty Words File: {pottyFile}");
             Console.WriteLine($"EDL File: {outEdlFile}");
@@ -40,7 +36,7 @@ namespace PMFileGenerator
             Console.WriteLine($"Muted Full SRT File: {outFullSrtFile}");
             Console.WriteLine("");
 
-            if(!File.Exists(srtFile))
+            if (!File.Exists(srtFile))
             {
                 Console.WriteLine($"SRT File {srtFile} does not exist.");
                 return;
@@ -58,17 +54,17 @@ namespace PMFileGenerator
 
             foreach (Subtitle st in srtIn.Subtitles)
             {
-                foreach(string line in st.Lines)
+                foreach (string line in st.Lines)
                 {
                     string theLine = line;
 
-                    foreach(string swear in swearWords)
+                    foreach (string swear in swearWords)
                     {
-                        if(IndexOfWholeWord(line.ToLower(), swear.ToLower()) != -1)
+                        if (IndexOfWholeWord(line.ToLower(), swear.ToLower()) != -1)
                         {
                             StringBuilder sb = new StringBuilder();
                             for (int i = 0; i < swear.Length; i++)
-                                sb.Append("*");
+                                sb.Append('*');
 
                             theLine = theLine.Replace(swear, sb.ToString(), StringComparison.OrdinalIgnoreCase);
 
@@ -76,7 +72,7 @@ namespace PMFileGenerator
                         }
                     }
 
-                    newLines.Add(theLine);  
+                    newLines.Add(theLine);
                 }
 
                 if (found)
@@ -88,12 +84,12 @@ namespace PMFileGenerator
                     newSt.StartTime = st.StartTime;
                     newSt.EndTime = st.EndTime;
 
-                    foreach(string s in newLines)
+                    foreach (string s in newLines)
                         newSt.Lines.Add(s);
 
                     subsOut.Add(newSt);
                     subsFullOut.Add(newSt);
-                    found = false;                 
+                    found = false;
                 }
                 else
                     subsFullOut.Add(st);
@@ -133,7 +129,7 @@ namespace PMFileGenerator
         /// <param name="str"></param>
         /// <param name="word"></param>
         /// <returns></returns>
-        public int IndexOfWholeWord(string str, string word)
+        public static int IndexOfWholeWord(string str, string word)
         {
             for (int j = 0; j < str.Length &&
                 (j = str.IndexOf(word, j, StringComparison.Ordinal)) >= 0; j++)
@@ -144,7 +140,7 @@ namespace PMFileGenerator
             return -1;
         }
 
-        private void DisplayHelp()
+        private static void DisplayHelp()
         {
             Console.WriteLine("PMFileGenerator <Full path to srt file> <Full path to muted words file>");
             Console.WriteLine("EDL and muted SRT files created in the same directory as the SRT file.");
