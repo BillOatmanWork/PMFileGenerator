@@ -7,3 +7,5 @@
 /obj
 /.vs
 *.bat
+/Build
+/Properties/launchSettings.json

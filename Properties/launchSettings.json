@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "PMFileGenerator": {
-      "commandName": "Project",
-      "commandLineArgs": "\"E:\\junk\\Bad Moms (2016).en.srt\"  E:\\PersonalRepos\\PMFileGenerator\\MuteList.txt"
-    }
-  }
-}
